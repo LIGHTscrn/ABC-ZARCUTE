@@ -6,7 +6,7 @@ export default function Ls_0(){
         <>
             <div className="text-center p-5 bg-black">
                 <h1 className="fw-bold text-white p-5">Seamless Live Streaming for Virtual & Hybrid Events</h1>
-                <h5 className="text-white">Professional, high-quality live streaming services to engage global audiences in real time.</h5>
+                <h5 className="text-white">Professional, high-quality live streaming services to capture the rarest of memories.</h5>
             </div>
         </>
     );
