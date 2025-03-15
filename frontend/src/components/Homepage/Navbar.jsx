@@ -1,159 +1,82 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import React from "react";
+import { useState } from "react";
+import { Component, Menu } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import Button from "./Button";
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
-function Navbar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+  const navItems = {
+    "/": ["Movies","Reviews","About us","Contact"],
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  // Select current navbar items
+  const currentNavLinks = navItems[location.pathname] || [];
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
+    <div className="bg-white shadow-md px-6 py-3 flex items-center justify-between">
+      {/* Logo */}
+      <div className="flex items-center space-x-2">
+        <img src="/logo.png" alt="Logo" className="h-8" />
+        <span className="text-xl font-bold text-black">ZARCUTE</span>
+      </div>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
+      {/* Desktop Menu */}
+      <div className="hidden md:flex items-center space-x-6 text-grey-700">
+        {currentNavLinks.map((item, index) => (
+          <Link key={index} to={`/${item.toLowerCase().replace(" ", "-")}`} style={{ textDecoration: "none"}} className="hover:text-black">
+            {item}
+          </Link>
+        ))}
+      </div>
+
+      {/* Right Section (Sign In/Sign Out) */}
+      <div className="hidden md:flex items-center space-x-4">
+        {location.pathname === "/profile" ? (
+          <Button className="bg-red-500 text-white hover:bg-red-600">Logout</Button>
+        ) : (
+          <>
+            <Link to="/login" style={{ textDecoration: "none"}} className="text-gray-700 hover:text-black">Sign In</Link>
+            <Button className="bg-purple-600 text-white hover:bg-purple-700">Sign Up Now</Button>
+          </>
+        )}
+      </div>
+
+      {/* Mobile Menu Button */}
+      <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+        <Menu className="w-6 h-6 text-gray-700" />
+      </button>
+
+      {/* Mobile Dropdown */}
+      {isOpen && (
+        <div className="absolute top-16 right-6 bg-white shadow-lg rounded-lg py-2 w-48 flex flex-col items-start">
+          {currentNavLinks.map((item, index) => (
+            <Link
+              key={index}
+              to={`/${item.toLowerCase().replace(" ", "-")}`}
+              className="px-4 py-2 text-gray-700 hover:bg-gray-100 w-full"
             >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
+              {item}
+            </Link>
+          ))}
+          {location.pathname === "/profile" ? (
+            <Button style={{ textDecoration: "none"}} className="w-full bg-red-500 text-white mt-2 hover:bg-red-600">
+              Logout
+            </Button>
+          ) : (
+            <>
+              <Link to="/login" style={{ textDecoration: "none"}} className="px-4 py-2 tet text-gray-700 hover:bg-gray-100 w-full">
+                Sign In
+              </Link>
+              <Button style={{ textDecoration: "none"}} className="w-full bg-purple-600 text-white mt-2 hover:bg-purple-700">
+                Sign Up Now
               </Button>
-            ))}
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+            </>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
-export default Navbar;
