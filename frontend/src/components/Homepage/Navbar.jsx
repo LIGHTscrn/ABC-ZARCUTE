@@ -9,7 +9,7 @@ export default function Navbar() {
   const location = useLocation();
 
   const navItems = {
-    "/": ["Movies","Reviews","About us","Support","Explore our services"],
+    "/": ["Home","Services","Support","About us"],
   };
 
 
@@ -26,7 +26,7 @@ export default function Navbar() {
 
       <div className="hidden bg-dark md:flex items-center space-x-6 text-grey-700">
         {currentNavLinks.map((item, index) => (
-          <Link key={index} to={`/${item.toLowerCase().replace(" ", "-")}`} style={{ textDecoration: "none"}} className=" bg-dark hover:text-black">
+          <Link key={index} to={`/${item.toLowerCase().replace(" ", "-")}`} style={{ textDecoration: "none"}} className="text-white bg-dark hover:text-black">
             {item}
           </Link>
         ))}
@@ -38,8 +38,8 @@ export default function Navbar() {
           <Button className="bg-red-500 text-white hover:bg-red-600">Logout</Button>
         ) : (
           <div className="bg-dark">
-            <Link to="/login" style={{ textDecoration: "none"}} className="text-gray-700 bg-dark hover:text-black">Sign In</Link>
-            <Button className="bg-dark text-white hover:bg-purple-700">Sign Up Now</Button>
+            <Link to="/login" style={{ textDecoration: "none"}} className="text-white bg-dark hover:text-red">Sign In</Link>
+            <Button className="bg-dark hover:bg-purple-700 border">Sign Up Now</Button>
           </div>
         )}
       </div>
@@ -69,7 +69,7 @@ export default function Navbar() {
               <Link to="/login" style={{ textDecoration: "none"}} className="px-4 py-2 tet text-gray-700 hover:bg-gray-100 w-full">
                 Sign In
               </Link>
-              <Button style={{ textDecoration: "none"}} className="w-full bg-purple-600 text-white mt-2 hover:bg-purple-700">
+              <Button style={{ textDecoration: "none"}} className=" rounded w-full bg-purple-600 text-white mt-2 hover:bg-purple-700">
                 Sign Up Now
               </Button>
             </>
