@@ -9,47 +9,46 @@ export default function Navbar() {
   const location = useLocation();
 
   const navItems = {
-    "/": ["Movies","Reviews","About us","Contact"],
+    "/": ["Movies","Reviews","About us","Support","Explore our services"],
   };
 
-  // Select current navbar items
+
   const currentNavLinks = navItems[location.pathname] || [];
 
   return (
-    <div className="bg-white shadow-md px-6 py-3 flex items-center justify-between">
-      {/* Logo */}
-      <div className="flex items-center space-x-2">
-        <img src="/logo.png" alt="Logo" className="h-8" />
-        <span className="text-xl font-bold text-black">ZARCUTE</span>
+    <div className="bg-dark rounded-b-md shadow-md px-6 py-3 flex items-center justify-between " >
+
+      <div className="flex bg-dark items-center space-x-2">
+        <img src="./logo.jpeg" alt="Logo" className="h-8" />
+        <span className="text-xl font-bold text-white">ZARCUTE</span>
       </div>
 
-      {/* Desktop Menu */}
-      <div className="hidden md:flex items-center space-x-6 text-grey-700">
+
+      <div className="hidden bg-dark md:flex items-center space-x-6 text-grey-700">
         {currentNavLinks.map((item, index) => (
-          <Link key={index} to={`/${item.toLowerCase().replace(" ", "-")}`} style={{ textDecoration: "none"}} className="hover:text-black">
+          <Link key={index} to={`/${item.toLowerCase().replace(" ", "-")}`} style={{ textDecoration: "none"}} className=" bg-dark hover:text-black">
             {item}
           </Link>
         ))}
       </div>
 
-      {/* Right Section (Sign In/Sign Out) */}
+
       <div className="hidden md:flex items-center space-x-4">
         {location.pathname === "/profile" ? (
           <Button className="bg-red-500 text-white hover:bg-red-600">Logout</Button>
         ) : (
-          <>
-            <Link to="/login" style={{ textDecoration: "none"}} className="text-gray-700 hover:text-black">Sign In</Link>
-            <Button className="bg-purple-600 text-white hover:bg-purple-700">Sign Up Now</Button>
-          </>
+          <div className="bg-dark">
+            <Link to="/login" style={{ textDecoration: "none"}} className="text-gray-700 bg-dark hover:text-black">Sign In</Link>
+            <Button className="bg-dark text-white hover:bg-purple-700">Sign Up Now</Button>
+          </div>
         )}
       </div>
 
-      {/* Mobile Menu Button */}
+
       <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
         <Menu className="w-6 h-6 text-gray-700" />
       </button>
 
-      {/* Mobile Dropdown */}
       {isOpen && (
         <div className="absolute top-16 right-6 bg-white shadow-lg rounded-lg py-2 w-48 flex flex-col items-start">
           {currentNavLinks.map((item, index) => (
