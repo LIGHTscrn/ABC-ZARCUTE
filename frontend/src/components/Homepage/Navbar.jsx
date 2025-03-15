@@ -9,7 +9,8 @@ export default function Navbar() {
   const location = useLocation();
 
   const navItems = {
-    "/": ["Home","Services","Support","About us"],
+    "/": ["Home","Services","Support","About-us"],
+    "livestream": ["Home","Services","Support", "About-us"]
   };
 
   // Select current navbar items
