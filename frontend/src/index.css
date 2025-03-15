@@ -2,3 +2,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+
+*{
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: jost;
+    font-size: large;
+    background-color: white;
+}
+
+.service_font{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.service_font2{
+    font-family: Arial, Helvetica, sans-serif;
+}

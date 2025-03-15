@@ -3,3 +3,8 @@
 *{
     /* background-color: #1e1e1e; */
 }
+@media (max-width: 728px) {
+    .hero_text{
+        display: none;
+    }
+}
