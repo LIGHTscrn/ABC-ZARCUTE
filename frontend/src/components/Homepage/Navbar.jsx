@@ -9,20 +9,20 @@ export default function Navbar() {
   const location = useLocation();
 
   const navItems = {
-    "/": ["Home","Services","Support","About-us"],
-    "livestream": ["Home","Services","Support", "About-us"]
+    "/home": ["Home","Services","Support","About-us"],
+    "/livestream": ["Home","Services","Support", "About-us"],
+    "/media_production": ["Home", "Services", "Support", "About-us"]
   };
 
   // Select current navbar items
   const currentNavLinks = navItems[location.pathname] || [];
 
   return (
-    <div className="bg-white shadow-md px-6 py-3 flex items-center justify-between">
+    <div className="bg-white shadow-md px-6 py-3 flex items-center justify-between sticky top-0 z-50">
       {/* Logo */}
       <div className="flex items-center space-x-2">
         <img src="./logo.jpeg" alt="Logo" className="h-8" />
-        <span className="text-xl font-bold text-black 
-        ">ZARCUIT</span>
+        <span className="text-xl font-bold text-black">ZARCUIT</span>
       </div>
 
       {/* Desktop Menu */}
