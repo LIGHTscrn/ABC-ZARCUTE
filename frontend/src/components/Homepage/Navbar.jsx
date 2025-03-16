@@ -9,9 +9,12 @@ export default function Navbar() {
   const location = useLocation();
 
   const navItems = {
+    "/": ["Home","Services","Support","About-us"],
     "/home": ["Home","Services","Support","About-us"],
     "/livestream": ["Home","Services","Support", "About-us"],
-    "/media_production": ["Home", "Services", "Support", "About-us"]
+    "/media_production": ["Home", "Services", "Support", "About-us"],
+    "/about-us": ["Home","Services","Support","About-us"],
+    "/esports": ["Home","Services","Support","About-us"],
   };
 
   // Select current navbar items
@@ -28,7 +31,7 @@ export default function Navbar() {
       {/* Desktop Menu */}
       <div className="hidden md:flex items-center space-x-6 text-black">
         {currentNavLinks.map((item, index) => (
-          <Link key={index} to={`/${item.toLowerCase().replace(" ", "-")}`} style={{ textDecoration: "none"}} className="hover:text-red-200 text-black">
+          <Link key={index} to={`/${item.toLowerCase().replace(" ", "-")}`} className="!hover:text-purple-800 text-black !no-underline">
             {item}
           </Link>
         ))}
