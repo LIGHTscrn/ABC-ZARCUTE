@@ -8,3 +8,15 @@
         display: none;
     }
 }
+
+/* Light mode styles */
+.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import './index.css';
@@ -11,18 +11,30 @@ import Esport from './components/Esports';
 import Support from './components/Support/Support';
 
 function App() {
+  const [currentMode, setCurrentMode] = useState('light');
+
+  const toggleMode = () => {
+    setCurrentMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+  };
+
+  useEffect(() => {
+    document.body.className = currentMode;
+  }, [currentMode]);
+
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/home" element={<Homepage />} />
-        <Route path='/livestream' element={<Livestream/>}/>
-        <Route path='/media_production' element={<Mediaproduction/>} />
-        <Route path='/register' element={<Register/>}/>
-        <Route path='/about-us' element={<AboutUs/>}/>
-        <Route path='/esports' element={<Esport/>}/>
-        <Route path='/support' element={<Support/>}/>
-      </Routes>
+      <div className={currentMode}>
+        <Routes>
+          <Route path="/" element={<Homepage currentMode={currentMode} toggleMode={toggleMode} />} />
+          <Route path="/home" element={<Homepage currentMode={currentMode} toggleMode={toggleMode} />} />
+          <Route path='/livestream' element={<Livestream currentMode={currentMode} toggleMode={toggleMode} />} />
+          <Route path='/media_production' element={<Mediaproduction currentMode={currentMode} toggleMode={toggleMode} />} />
+          <Route path='/register' element={<Register currentMode={currentMode} toggleMode={toggleMode} />} />
+          <Route path='/about-us' element={<AboutUs currentMode={currentMode} toggleMode={toggleMode} />} />
+          <Route path='/esports' element={<Esport currentMode={currentMode} toggleMode={toggleMode} />} />
+          <Route path='/support' element={<Support currentMode={currentMode} toggleMode={toggleMode} />} />
+        </Routes>
+      </div>
     </Router>
   );
 }
