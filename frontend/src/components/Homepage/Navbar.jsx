@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Component, Menu } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import Button from "./Button";
+import Darkwhite from "../blackandwhite/Darkwhite";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +36,7 @@ export default function Navbar() {
             {item}
           </Link>
         ))}
+        <Darkwhite />
       </div>
 
       {/* Right Section (Sign In/Sign Out) */}
@@ -72,6 +74,7 @@ export default function Navbar() {
             </Button>
           ) : (
             <>
+              <Darkwhite/>
               <Link to="/login" style={{ textDecoration: "none"}} className="px-4 py-2 tet text-gray-700 hover:bg-gray-100 w-full">
                 Sign In
               </Link>

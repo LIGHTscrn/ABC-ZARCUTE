@@ -1,6 +1,6 @@
 export default function Footer(){
     return(
-        <div className="text-center bg-gray-200">
+        <div className="text-center ">
             <section id="contact">
                 <h2 className="">Contact Us</h2>
                 <p>If you have any questions, partnership inquiries, or need assistance, feel free to reach out to us!</p>
