@@ -21,7 +21,7 @@ export default function Services(){
                 <div className="col-md-4">
                     <div className="card shadow rounded-2">
                         <div className="card-body">
-                        <Link to="/livestream" style={{textDecoration: 'none', color: 'inherit'}}>
+                        <Link to="/media_prod" style={{textDecoration: 'none', color: 'inherit'}}>
                             <img height="200px" width="100%" src="./media_prod.jpeg" alt="" />
                             <h5 className="card-title pt-3 service_font text-center">Media Production</h5>
                             <p className="card-text service_font2 text-center">"Organize,Stream, and Elevate Your Content".</p>
